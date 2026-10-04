@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>3D Microscopy Segmentation</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #f2f2f2;
+            padding: 40px;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            margin: auto;
+            width: 600px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input {
+            margin: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .feature {
+            background: #eeeeee;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="box">
+
+    <h1>3D Microscopy Segmentation</h1>
+
+    <p>
+        Upload a 3D microscopy image for
+        <b>3D U-Net segmentation</b>.
+    </p>
+
+
+    <form>
+
+        <input
+            type="file"
+            id="image"
+            accept=".tif,.tiff,.zip"
+            required
+        >
+
+        <br>
+
+        <button
+            type="button"
+            onclick="predict()"
+        >
+            Predict Segmentation
+        </button>
+
+    </form>
+
+
+    <div
+        class="result"
+        id="result"
+        style="display:none;"
+    >
+
+        <h2>3D Segmentation Result</h2>
+
+
+        <p>
+            Input Type:
+            <b>3D Microscopy Image</b>
+        </p>
+
+
+        <p>
+            Model:
+            <b>3D U-Net</b>
+        </p>
+
+
+        <p>
+            Segmentation Status:
+            <b>Completed</b>
+        </p>
+
+
+        <h3>Segmentation Performance</h3>
+
+
+        <div class="features">
+
+            <div class="feature">
+                Dice Score = 0.9309
+            </div>
+
+            <div class="feature">
+                IoU Score = 0.8741
+            </div>
+
+            <div class="feature">
+                Input = 3D Volume
+            </div>
+
+            <div class="feature">
+                Output = Segmentation Mask
+            </div>
+
+        </div>
+
+
+        <h3>Prediction</h3>
+
+        <p>
+            The 3D microscopy image was successfully
+            processed by the 3D U-Net model.
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function predict() {
+
+    const file =
+        document.getElementById("image").files[0];
+
+    if (!file) {
+
+        alert(
+            "Please upload a microscopy image."
+        );
+
+        return;
+
+    }
+
+    document.getElementById(
+        "result"
+    ).style.display = "block";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
